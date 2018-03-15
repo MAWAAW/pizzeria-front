@@ -1,0 +1,31 @@
+<mat-card>
+  <form #pizzaForm="ngForm" (ngSubmit)="save(pizzaForm.value)">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>{{pizza.name ? 'Edit' : 'Add'}} Pizza</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <input type="hidden" name="href" [(ngModel)]="pizza.href">
+      <mat-form-field>
+        <input matInput placeholder="Pizza Code" [(ngModel)]="pizza.code" required name="code" #name>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Pizza Name" [(ngModel)]="pizza.name" required name="name" #name>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Pizza Price" [(ngModel)]="pizza.price" required name="price" #price>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!pizzaForm.form.valid">Save</button>
+      <button mat-raised-button color="secondary" (click)="remove(pizza.href)" *ngIf="pizza.href" type="button">Delete</button>
+      <a mat-button routerLink="/pizza-list">Cancel</a>
+    </mat-card-actions>
+    <mat-card-footer>
+      <div class="giphy">
+        <img src="{{pizza.giphyUrl}}" alt="{{pizza.name}}">
+      </div>
+    </mat-card-footer>
+  </form>
+</mat-card>
